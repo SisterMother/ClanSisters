@@ -79,7 +79,7 @@ class Login extends React.Component {
   }
 
   googleOAuthRedirect () {
-    window.location.href = '/auth/google';
+    window.location.href = '/auth/steam';
   }
 
   render() {

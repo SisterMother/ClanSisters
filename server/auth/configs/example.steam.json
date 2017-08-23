@@ -1,0 +1,5 @@
+{
+  "STEAM_API_KEY": "FILL_ME_IN",
+  "STEAM_ORIGIN_URL": "http://FILL_ME_IN",
+  "STEAM_CALLBACK_URL": "http://FILL_ME_IN/auth/steam/callback"
+}

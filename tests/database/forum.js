@@ -1,10 +1,11 @@
 const {Clan, Forum, User} = require('../../database');
 const {expect} = require('chai');
 const {db} = require('../../database/connection');
+const mockDB = require('../mockDB.json');
 
-let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
-let clan = {name: 'test_clan_please_ignore', userId: 0};
-let forum = {name: 'test_forum_please_ignore', clanId: 0};
+let user = mockDB.users[0];
+let clan = mockDB.clans[0];
+let forum = mockDB.forums[0];
 
 describe('Forum Schema', () => {
   beforeEach((done) => {
@@ -15,7 +16,7 @@ describe('Forum Schema', () => {
   });
 
   it('inserts new Forums', (done) => {
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -34,7 +35,7 @@ describe('Forum Schema', () => {
 
   it('limits the number of new Forums', (done) => {
     let name = forum.name;
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -83,7 +84,7 @@ describe('Forum Schema', () => {
   });
 
   it('reads existing Forums', (done) => {
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -104,7 +105,7 @@ describe('Forum Schema', () => {
   });
 
   it('updates existing forums', (done) => {
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);
@@ -129,7 +130,7 @@ describe('Forum Schema', () => {
   });
 
   it('deletes existing Forums', (done) => {
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
         return Clan.model.create(clan);

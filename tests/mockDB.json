@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "steamId": 12345678,
+      "steamAvatarImageUrl": "http://fakewebsite.com",
+      "steamProfileUrl": "http://fakewebsite.com",
+      "steamScreenName": "Fredex",
+      "steamRealName": "Freddy Z"
+    },
+    {
+      "id": 2,
+      "steamId": 1234,
+      "steamAvatarImageUrl": "http://fakewebsite.com",
+      "steamProfileUrl": "http://fakewebsite.com",
+      "steamScreenName": "Fredex",
+      "steamRealName": "Freddy Z"
+    }
+  ],
+  "clans": [
+    {
+      "id": 1,
+      "name": "test_clan_name",
+      "userId": 12345678
+    }
+  ],
+  "forums": [
+    {
+      "id": 1,
+      "name": "test_forum_name"
+    }
+  ],
+  "posts": [
+    {
+      "userId": 12345678, 
+      "forumId": 1,
+      "title": "test_post_please_ignore", 
+      "body": "test_body_please_ignore"
+    }
+  ]
+}

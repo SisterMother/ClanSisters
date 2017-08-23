@@ -65,3 +65,4 @@ package-lock.json
 
 client/dist/bundle*
 docs/
+server/auth/configs/steam.json

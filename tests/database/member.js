@@ -1,10 +1,11 @@
 const {User, Clan, Member} = require('../../database');
 const {expect} = require('chai');
 const {db} = require('../../database/connection');
+const mockDB = require('../mockDB.json');
 
-let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
-let user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ignore'};
-let clan = {name: 'test_clan_please_ignore', userId: 0};
+let user = mockDB.users[0];
+let user2 = mockDB.users[1];
+let clan = mockDB.clans[0];
 
 describe('Member Schema', () => {
   beforeEach((done) => {
@@ -15,11 +16,11 @@ describe('Member Schema', () => {
   });
   
   it('inserts new members', (done) => {
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         user.id = newUser.id;
         clan.userId = newUser.id;
-        return Clan.create(clan);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
         return Member.create(user.id, newClan.id);
@@ -31,11 +32,11 @@ describe('Member Schema', () => {
   });
 
   it('reads a member', (done) => {
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         user.id = newUser.id;
         clan.userId = newUser.id;
-        return Clan.create(clan);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
         clan.id = newClan.id;
@@ -53,15 +54,15 @@ describe('Member Schema', () => {
   });
 
   it('reads members', (done) => {
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         user.id = newUser.id;
-        return User.create(user2);
+        return User.model.create(user2);
       })
       .then(newUser => {
         user2 = newUser;
         clan.userId = newUser.id;
-        return Clan.create(clan);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
         clan.id = newClan.id;

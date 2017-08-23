@@ -4,18 +4,16 @@ const request = supertest.agent(app);
 const { User, Clan, Member } = require('../database');
 const {db} = require('../database/connection');
 const {expect} = require('chai');
+const mockDB = require('./mockDB.json');
 
-let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
-let user2 = {username: 'test_user_please_ignore', password: 'test_user_please_ignore'};
-let clan = {name: 'test_clan_please_ignore', userId: 0};
+let user = mockDB.users[0];
+let user2 = mockDB.users[1];
+let clan = mockDB.clans[0];
 
 /**
  * @todo Double check with the database that changes went through.
  */
 describe('Express Middleware', () => {
-  
-  let user = {username: 'fred_zirdung', password: 'fred_zirdung'};
-
   beforeEach((done) => {
     db.sync({force: true})
       .then(() => {
@@ -41,7 +39,7 @@ describe('Express Middleware', () => {
   });
 
   it('should return users from get to /users/:user', (done) => {
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         return request.get(`/api/users/${newUser.id}`)
           .expect(200)
@@ -52,32 +50,11 @@ describe('Express Middleware', () => {
       });
   });
 
-  it('should create a new user with post to /users ', (done) => {
-    request.post('/api/users')
-      .send({username: 'foo', password: 'bar'})
-      .set('Content-Type', 'application/json')
-      .expect(200)
-      .then(() => {
-        done();
-      });
-  });
-
-  it('should delete a new user with delete to /users ', (done) => {
-    User.create(user)
-      .then(newUser => {
-        return request.delete(`/api/users/${newUser.id}`)
-          .expect(200);
-      })
-      .then(() => {
-        done();
-      });
-  });
-
   it('should create a new member with post to /users/:user/members/ ', (done) => {
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
-        return Clan.create(clan);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
         return request.post(`/api/users/${clan.userId}/members`)
@@ -92,10 +69,10 @@ describe('Express Middleware', () => {
 
   it('should remove membership with delete to /users/:user/members/:member', (done) => {
     let userId;
-    User.create(user)
+    User.model.create(user)
       .then(newUser => {
         clan.userId = newUser.id;
-        return Clan.create(clan);
+        return Clan.create(user, clan);
       })
       .then(newClan => {
         clan.id = newClan.id;
