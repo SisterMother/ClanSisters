@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pageComponents/HomePage.jsx';
+import { Provider } from 'redux';
+import configureStore from './configureStore.js';
 import Login from './login/index.jsx';
 import User from './pageComponents/UserPage.jsx';
 import Clan from './pageComponents/ClanPage.jsx';
@@ -26,6 +28,9 @@ material-ui component for this.
 */
 
 
+let store = configureStore();
+console.log('store: ', store.getState());
+
 const App = () => (
   <div>
       <Switch>
@@ -46,14 +51,13 @@ const App = () => (
         </Route>
       </Switch>
   </div>
-
 )
 
 /** Render App using React Router. */
 ReactDOM.render((
-  <MuiThemeProvider>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <MuiThemeProvider>    
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </MuiThemeProvider>
 ), document.getElementById('root'));
