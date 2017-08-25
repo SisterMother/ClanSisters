@@ -27,7 +27,7 @@ const style = {
 const UserClans = (props) => (
   <div>
     <div className = 'userClanScrollBox' >
-      {props.clans? props.clans.map((clan, i) => {
+      {props.clans ? props.clans.map((clan, i) => {
         return (<ClanChip clan={clan} key={i} />);
       }) : null}
     </div>
