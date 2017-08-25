@@ -46,7 +46,6 @@ Going to rewrite components as I have more clarity today about how we are going 
 
 
 let store = configureStore();
-console.log('store: ', store.getState());
 
 const App = () => (
   <div>

@@ -1,6 +1,9 @@
 import React from 'react';
-import UserClans from '../components/UserClans.jsx';
+import UserClans from '../components/UserClans.jsx'
 import ForumList from '../components/ForumList.jsx'
+import { connect } from 'react-redux'
+import { fetchUserClans } from  '../actions/clanActions'
+
 
 /*
 Right now I just plan on having the user profile information in a div box, I don't see anything in-
@@ -13,6 +16,7 @@ posts will need to be loaded.
 
 Note, our testClans are the same in several different places. 
 */
+
 
 const testForums = [
   {title: 'test001', heading: 'test001', id: 'test001'},

@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export const types = {
   FETCH_ALL_CLANS: 'FETCH_ALL_CLANS',
-  FETCH_USER_CLANS: 'FETCH_USER_CLANS'
+  FETCH_USER_CLANS: 'FETCH_USER_CLANS',
+  ADD_CLAN: 'ADD_CLAN'
 };
 
 //fetchAllClans is an action cretor
@@ -23,3 +24,34 @@ export const fetchAllClans = () => {
       throw err;
     });
 };
+
+ 
+export const fetchUserClans = (userId) => {
+  axios.get('/:userId/members')
+    .then(memberships => {
+      console.log('we got the memberships: ', memberships);
+      dispatch({
+        type: types.FETCH_USER_CLANS,
+        payload: memberships
+      });
+    })
+    .catch(err => {
+      console.log('error getting user clans');
+      throw err;
+    });
+};
+
+export const addClan = () => {
+  return {
+    type: types.ADD_CLAN,
+    payload: [{key: 1, type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'}]
+  };
+}
+  // axios.post('/', {type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'})
+  //   .then(res => {
+  //     fetchAllClans();
+  //   })
+  //   .catch(err => console.log('error in addClan: ', err));
+
+
+
