@@ -10,8 +10,8 @@ Right Now I am just going to pass a test object in to ensure that it works corre
 
 
 I have a div for the users online, it just needs to be passed whatever props we will use to populate this box.
-*/
 
+*/
 
 const testClans = [
   'Starcraft',
@@ -22,31 +22,37 @@ const testClans = [
   'Destiny'
 ]
 
+const style = {
+  height: '375px',
+  width: '700px',
+  border: '5px',
+  overflow: 'auto',
+  float: 'right',
+};
+
 const menuProps = {
   desktop: true,
   disableAutoFocus: true,
 };
 
 const Home = (props) => {
-  var usersOnlineStyles = {
-  width: '300px',
-  border: '25px black',
-  padding: '25px',
-  margin: '25px',}
   return (  <div>
-    <h3> Welcome to ClanSisters!! </h3>
+    <h1 className= 'textCenter' > Welcome to ClanSisters!!</h1>
       <div className = 'clanSearchBox'>
-        <AutoComplete
+        You can search for an existing clan... <AutoComplete
         hintText="Find a clan!!"
         dataSource={testClans}
         menuProps={menuProps}
         />
       </div>
-        <ClanCreator />
-      <div>
-        <ClanList clans={[]} />
+      <div className = 'clanCreatorButton'>
+        Or simply create your own!! <ClanCreator />
       </div>
-      <div style= {usersOnlineStyles} >
+      <div style= {style} >
+        Existing clans
+        <ClanList clans={testClans} />
+      </div>
+      <div className = 'usersOnlineStyle' >
         PlaceHolder for Users Online.
       </div>
 

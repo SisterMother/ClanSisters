@@ -17,12 +17,10 @@ In order to add an avatar to our chips use the following code: <Avatar src="IMAG
 It would also be cool if clans could have chip colors associated with them.
 */
 
-const style = {
-  height: '200px',
-  width: '200px',
-  border: '5px',
-  overflow: 'auto',
-};
+
+const mapStateToProps = state => ({
+  clans: state.clans
+})
 
 const mapStateToProps = state => ({
   clans: state.clans
@@ -30,16 +28,19 @@ const mapStateToProps = state => ({
 
 const UserClans = (props) => (
   <div>
-    <div style = {style} >
+
+    <div className = 'userClanScrollBox' >
       {/*
       The map below accesses the Chip component; the uncommented version is a placeholder
       //{props.clans.map((clan) => {
-        //return (<ClanChip clan={clan} key={clan.id} />);  
+        //return (<ClanChip clan={clan} key={clan.id} />);
+
       */}
       {props.clans.map((clan, i) => {
         return (<div key={i}>{clan.name}</div>);
       //{props.clans.map((clan) => {
-        //return (<ClanChip clan={clan} key={clan.id} />);  
+        //return (<ClanChip clan={clan} key={clan.id} />);
+
       })}
     </div>
   </div>

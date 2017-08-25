@@ -29,7 +29,7 @@ class ClanChip extends React.Component {
           onClick={this.handleTouchTap}
           style={styles.chip}
         >
-          {props.clan.title}
+          {this.props.clan.title}
         </Chip>
       </div>
     );

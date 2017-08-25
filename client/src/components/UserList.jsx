@@ -8,14 +8,14 @@ const style = {
   overflow: 'auto',
 }
 
-const UserList = () => (
+const UserList = (props) => (
 	<div>
 		<div>User List</div>
 		<div style = {style} >
-			{this.props.users.map(user =>
-				<Card>
+			{props.users.map(user =>
+				<Card key= {user.id}>
 					<CardHeader
-						title= {props.user.name}
+						title= {user.name}
 					/>
 					<CardText>
 						User Test text. 

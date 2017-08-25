@@ -11,31 +11,29 @@ the api for more posts once you scroll past a certain number of posts (say 25), 
 posts will need to be loaded.
 
 
-
 */
 
 
+var fakeClans = [
+  {title: 'testClan001', id: '001'},
+  {title: 'testClan002', id: '002'},
+  {title: 'testClan003', id: '003'}
+]
+
+
+
 const User = (props) => {
-    var profileDataStyles = {
-        width: '300px',
-        border: '50px black',
-        padding: '50px',
-        margin: '50px,'
-    }
     return (
     <div>
-        <div className = 'profileData' style = {profileDataStyles}>
-        This box here is designed to hold our user profile data.
-        I didn't really see anything in the material-ui library that works for this.
-        Perhaps we can add something like react bootstrap later that will give us some
-        other components.
-        </div>
-        <div>
-          <UserClans />
-        </div>
-        <div>
+        <div className = 'userForumListBox'>
             INSERT_USER_NAME_HERE'S forums
           <ForumList forums={[]} />
+        </div>      
+        <div className = 'profileData'>
+        This box here is designed to hold our user profile data.
+        </div>
+        <div>
+          <UserClans clans= {fakeClans} />
         </div>
     </div>
     )

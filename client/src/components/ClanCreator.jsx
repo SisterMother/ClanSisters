@@ -65,7 +65,7 @@ export default class ClanCreator extends React.Component {
   render() {
     return (
       <div>
-        <RaisedButton label="Create your own clan!!!" onClick={this.handleOpen} />
+        <RaisedButton label="Clan Builder" onClick={this.handleOpen} />
         <Dialog
           title="Create a new clan"
           actions={this.actions}

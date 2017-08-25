@@ -2,6 +2,7 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
 /*
 I am going to use the map method here in order to populate clan forums. 
 This may not be the best way to implement this within the scope of Redux.  
@@ -56,8 +57,8 @@ class ForumList extends React.Component {
           {this.props.forums.map(forum =>
             <Card>
               <CardHeader
-              title= {props.forum.title}
-              subtitle = {props.forum.heading}
+              title= {forum.title}
+              subtitle = {forum.heading}
               />
               <CardText>
                 If we want to add more information about the forum, this would be place to make it happen!!!!

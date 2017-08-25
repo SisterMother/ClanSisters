@@ -23,6 +23,12 @@ const joinClan = () => {
     alert('NUCLEAR LAUNCH IN 5, 4, 3...')
 }
 
+const testForums = [
+  {title: 'test001', heading: 'test001', id: 'test001'},
+  {title: 'test002', heading: 'test002', id: 'test002'},
+  {title: 'test003', heading: 'test003', id: 'test003'}
+]
+
 const testClans = [
   'Starcraft',
   'Mass Effect',
@@ -37,30 +43,35 @@ const menuProps = {
   disableAutoFocus: true,
 };
 
+const testUsers = [
+
+  {name: 'Test001', id: '001'}
+]
+
 const Clan = (props) => {
     return (
         <div>
-            WURLDZ BIGGEST BORDERLANDS 1 CLAN!!
-            <div>
+          <div className = 'textCenter'>
+           <h1> WURLDZ BIGGEST BORDERLANDS 1 CLAN!! </h1>
             <RaisedButton
             label = 'JOIN THIS CLAN'
             onClick = {joinClan}
-            />
-            </div>
-        <div>
-           <ForumList forums={[]} /> 
-        </div>
-        <div>
-            <AutoComplete         
-              hintText="Find a clan!!"
+          />
+          <div>
+          <AutoComplete         
+              hintText="Find a different clan!!"
               dataSource={testClans}
               menuProps={menuProps}
-              />
-        </div>
-        <div>
-            <UserList /> 
-        </div>
-
+          />
+          </div>
+          </div>
+          <div className = 'floatLeft'>
+            Current Clan Forums
+           <ForumList forums={testForums} /> 
+          </div>
+          <div className ='userForumListBox'>
+            <UserList users ={testUsers} /> 
+          </div>
         </div>
     )
 }
