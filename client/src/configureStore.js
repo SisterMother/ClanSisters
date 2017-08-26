@@ -16,15 +16,12 @@ const initialState = {
   forums: []
 };
 
-const devToolsExtension = window.devToolsExtension;
-
 const middleware = [
   thunk
 ]
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),
-  devToolsExtension()
 )
 
 export default function configureStore() {
