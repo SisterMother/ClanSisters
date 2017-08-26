@@ -1,4 +1,3 @@
-import { types } from '../actions/clanActions.js';
 import { fetchAllClans, fetchUserClans, fetchCurrentUser, types } from '../actions/clanActions.js';
 
 export const rootReducer = (state, action) => {
