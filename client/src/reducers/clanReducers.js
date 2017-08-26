@@ -1,4 +1,4 @@
-import { types } from '../actions/clanActions.js';
+import { fetchAllClans, fetchUserClans, fetchCurrentUser, types } from '../actions/clanActions.js';
 
 export const rootReducer = (state, action) => {
   let newState;
@@ -9,6 +9,10 @@ export const rootReducer = (state, action) => {
     newState = {...state, members: action.payload};
   } else if (action.type === types.ADD_CLAN) {
     newState = {...state, clans: action.payload};
+  } else if (action.type === types.FETCH_CURRENT_USER) {
+    newState = {...state, currentUser: action.payload};
+  } else if (action.type === types.FETCH_USER_FORUMS) {
+    newState = {...state, forums: action.payload};
   }
   return newState || state;
 };
