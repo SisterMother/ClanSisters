@@ -21,7 +21,7 @@ const middleware = [
 ]
 
 const composedEnhancers = compose(
-  applyMiddleware(...middleware),
+  applyMiddleware(...middleware)
 )
 
 export default function configureStore() {
