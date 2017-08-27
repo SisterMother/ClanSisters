@@ -7,11 +7,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Nav from '../components/Nav.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAllClans, addClan, fetchClanForums } from  '../actions/clanActions';
+import { fetchAllClans, addClan, fetchClanForums } from  '../actions/actions';
 
 const joinClan = () => {
-  this.props.dispatch(addClan)
-}
+  this.props.dispatch(addClan);
+};
 
 const menuProps = {
   desktop: true,
@@ -22,20 +22,20 @@ const mapStateToProps = (state) => {
   return {
     clans: state.clans,
     forums: state.forums
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     fetchAllClans,
     addClan,
     fetchClanForums
-  }, dispatch)
-}
+  }, dispatch);
+};
 
 class ClanPage extends React.Component {
   constructor (props) {
-    super (props)
+    super (props);
   }
 
   componentDidMount() {
@@ -48,13 +48,13 @@ class ClanPage extends React.Component {
         <Nav/>
         <div className = 'textCenter'>
           <RaisedButton
-          label = 'Join Clan'
-          onClick = {() => this.props.fetchClanForums()}
+            label = 'Join Clan'
+            onClick = {() => this.props.fetchClanForums()}
           />
           <AutoComplete         
-              hintText="Find a different clan!!"
-              dataSource={this.props.clans}
-              menuProps={menuProps}
+            hintText="Find a different clan!!"
+            dataSource={this.props.clans}
+            menuProps={menuProps}
           />
         </div>
         <h2>Your Clans</h2>

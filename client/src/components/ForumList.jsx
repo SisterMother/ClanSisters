@@ -36,42 +36,26 @@ class ForumList extends React.Component {
 
   handleOpen () {
     this.setState({open: true});
-  };
+  }
   handleClose () {
     this.setState({open: false});
-  };
+  }
 
   render () {
     return (
       <div>
-        <div style = {style} >
+        <div style={style}>
           {this.props.forums.length ? this.props.forums.map(forum =>
-            <Card key = {forum.id}>
+            <Card key={forum.id}>
               <CardHeader
-              title= {forum.title}
-              subtitle = {forum.heading}
+                title={forum.name}
+                subtitle={forum.clanId}
               />
-              <CardText>
-                If we want to add more information about the forum, this would be place to make it happen!!!!
-              </CardText>
               <CardActions>
-                <FlatButton label="View Forum" onClick = {console.log} />
-                <FlatButton label="Join Forum" onClick = {console.log} />
+                <FlatButton label="View Forum" onClick={console.log} />
               </CardActions>
             </Card>
           ) : null}
-        </div>
-        <div>
-          <RaisedButton label="Add Forum" onClick={this.handleOpen} />
-          <Dialog
-            title="New Forum"
-            actions={this.actions}
-            modal={false}
-            open={this.state.open}
-            onRequestClose={this.handleClose}
-          >
-            Eventually, this will have forms that will allow us to make a clan.
-          </Dialog>
         </div>
       </div>
     );
