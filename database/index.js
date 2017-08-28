@@ -4,6 +4,7 @@ const Forum = require('./models/forum');
 const Post = require('./models/post');
 const Member = require('./models/member');
 const PostVote = require('./models/postVote');
+const ClanFeed = require('./models/clanFeed');
 
 Clan.model.belongsTo(User.model, {as: 'creator'});
 Clan.model.hasMany(Forum.model);
@@ -18,6 +19,9 @@ Post.model.belongsTo(User.model);
 
 Post.model.belongsToMany(User.model, {through: PostVote.model});
 User.model.belongsToMany(Post.model, {through: PostVote.model});
+
+User.model.hasMany(ClanFeed.model);
+Clan.model.hasMany(ClanFeed.model);
 
 module.exports = {
   User,
