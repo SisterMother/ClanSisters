@@ -12,8 +12,8 @@ const UserList = (props) => (
 	<div>
 		<div>User List</div>
 		<div style = {style} >
-			{props.users.length ? props.users.map(user =>
-				<Card key= {user.id}>
+			{props.users.length ? props.users.map((user,i) =>
+				<Card key= {i}>
 					<CardHeader
 						title= {user.name}
 					/>

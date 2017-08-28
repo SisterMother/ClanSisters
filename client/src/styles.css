@@ -46,25 +46,26 @@ body {
 }
 
 .userForumListBox {
-  margin-right: 2cm;
-  float: right;
   height: '200px';
   width: '200px';
   border: '5px';
   overflow: 'auto';
-
 }
 
 .profileData {
-  margin-left: 2cm;
-  margin-top: 2cm;
-  margin-bottom: 2cm;
-  float: 'left';
+  margin-top: 1cm;
+  margin-bottom: 1cm;
+  margin-right: 1cm;
+  float: 'right';
   height: '500px';
   width: '300px';
   border: '50px black';
   padding: '50px';
   margin: '50px';
+}
+
+.userProfileCard {
+  max-width: 50%;
 }
 
 .floatLeft {

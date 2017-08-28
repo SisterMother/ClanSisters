@@ -17,6 +17,7 @@ const MemberModel = db.define('member', {
 let Member = {model: MemberModel};
 
 Member.create = Member.joinUserToClan = (userId, clanId, confirmed = false) => {
+  
   return User.find({id: userId})
     .then(user => {
       if (!user) { throw new Error('No such user! ' + userId); }

@@ -49,7 +49,7 @@ let store = configureStore();
 const App = () => (
   <div>
     <Switch>
-      <Route exact path = '/' >
+      <Route exact path = '/home' >
         <Home />
       </Route>
       <Route exact path = '/login' >

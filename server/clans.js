@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Clan, User, ClanFeed} = require('../database');
+const {Clan, User, Member, ClanFeed} = require('../database');
 const auth = require('./authMiddleware');
 
 router.get('/', (req, res) => {
@@ -28,15 +28,11 @@ router.get('/:clan', (req, res) => {
 });
 
 router.get('/:clan/members', (req, res) => {
-  return Clan.model.findOne({
-    include: [{
-      model: User.model,
-    }],
-    where: {id: req.params.clan}
-  })
-    .then((clan) => {
-      if (clan) {
-        res.json({results: clan.members});
+  return Member.model.findAll({})
+    .then((members) => {
+      if (members) {
+        console.log('i guess these are the members??: ', members);
+        res.json({results: members});
       } else {
         throw new Error('Clan does not exist');
       }
@@ -55,6 +51,8 @@ router.post('/', auth.isLoggedIn(), (req, res) => {
       res.status(500).send(err.message);
     });
 });
+
+
 
 router.post('/:clan', auth.isLoggedIn(), (req, res) => {
   return Clan.update({id: req.params.clan}, req.body, req.user)

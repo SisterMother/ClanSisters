@@ -4,6 +4,7 @@ const User = require('../database/models/user');
 const Member = require('../database/models/member');
 const Forum = require('../database/models/forum');
 const Post = require('../database/models/post');
+const Clan = require('../database/models/clan');
   
 /**
  * A get request to the users endpoint returns all users as an array of json
@@ -76,6 +77,36 @@ router.route('/:user/members')
       });
   });
 
+// NEW user clans req handler
+router.route('/:user/clans')
+  .get((req, res, next) => {
+    Member.findAll({
+      userId: req.params.user
+    })
+      .then((members) => {
+        console.log('members', members);
+        let promises = [];
+        let clans = [];
+        members.forEach((member) => {
+          promises.push(
+            Clan.read({
+              id: member.clanId
+            })
+              .then((clanId) => {
+                console.log('clans?', clanId);
+                if (clans.filter((clanElement) => { return clan.id === clanElement.id; }).length === 0) {
+                  clans.push(clanId);
+                }
+              })
+          );
+        });
+        return Promise.all(promises)
+          .then(() => {
+            res.json(clans);
+          });
+      });
+  });
+
 /**
  * Read, update, or delete a specific users memberships by sending a get, 
  * post, or delete verb to the user's /members endpoint. On success, post 
@@ -90,8 +121,8 @@ router.route('/:user/members')
 router.route('/:user/members/:clanId')
   .get((req, res, next) => {
     Member.read({
-      userId: req.params.user,
-      clanId: req.params.clanId, 
+      userId: `${req.params.user}`,
+      clanId: `${req.params.clanId}`, 
     }) 
       .then(doc => {
         res.status(200);
@@ -108,12 +139,14 @@ router.route('/:user/members/:clanId')
       });
   })
   .post((req, res, next) => {
-    Member.update({
+    console.log('should be the user and clan Ids: ', {
       userId: req.params.user,
-      clanId: req.params.clanId, 
-    }, {
-      confirmed: req.body.confirmed
-    })
+      clanId: req.params.clanId
+    });
+    Member.create(req.params.user,
+      req.params.clanId, 
+      req.body.confirmed
+    )
       .then(doc => {
         res.status(200);
         res.json({id: doc.id});
@@ -224,22 +257,22 @@ router.route('/:user/forums')
     })
       .then((posts) => {
         let promises = [];
-        let clans = [];
+        let forums = [];
         posts.forEach((post) => {
           promises.push(
             Forum.read({
-              clanId: post.clanId
+              id: post.forumId
             })
-              .then((clan) => {
-                if (clans.filter((clanElement) => { return clan.id === clanElement.id; }).length === 0) {
-                  clans.push(clan);
+              .then((forumId) => {
+                if (forums.filter((forumElement) => { return forum.id === forumElement.id; }).length === 0) {
+                  forums.push(forumId);
                 }
               })
           );
         });
         return Promise.all(promises)
           .then(() => {
-            res.json(clans);
+            res.json(forums);
           });
       });
   });

@@ -1,6 +1,7 @@
 module.exports.isLoggedIn = (onErr) => {
   return ((req, res, next) => {
     if (req.isAuthenticated()) {
+      res.redirect('/home');
       return next();
     } else {
       if (onErr === 'redirect') {
