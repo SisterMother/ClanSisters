@@ -5,6 +5,7 @@ const auth = require('./authMiddleware');
 router.get('/', (req, res) => {
   return Clan.findAll(req.query)
     .then(clans => {
+      
       res.json({results: clans});
     })
     .catch(err => {

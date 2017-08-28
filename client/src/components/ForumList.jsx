@@ -45,7 +45,7 @@ class ForumList extends React.Component {
     return (
       <div>
         <div style = {style} >
-          {this.props.forums.map(forum =>
+          {this.props.forums.length ? this.props.forums.map(forum =>
             <Card key = {forum.id}>
               <CardHeader
               title= {forum.title}
@@ -59,7 +59,7 @@ class ForumList extends React.Component {
                 <FlatButton label="Join Forum" onClick = {console.log} />
               </CardActions>
             </Card>
-          )}
+          ) : null}
         </div>
         <div>
           <RaisedButton label="Add Forum" onClick={this.handleOpen} />

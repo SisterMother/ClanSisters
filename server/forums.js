@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {Forum, Post} = require('../database');
 
 router.get('/', (req, res) => {
-  return Forum.findAll(req.query)
+  return Forum.findAll(req.query.id)
     .then(forums => {
       res.json({results: forums});
     })
@@ -15,7 +15,7 @@ router.get('/:forum', (req, res) => {
   return Forum.read({id: req.params.forum})
     .then(forum => {
       if (forum) {
-        res.json({results: forum.toJSON()});
+        res.json({results: forum});
       } else {
         res.status(400).send('Forum doesn\'t exist');
       }

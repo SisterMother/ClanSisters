@@ -5,7 +5,8 @@ export const types = {
   FETCH_USER_CLANS: 'FETCH_USER_CLANS',
   ADD_CLAN: 'ADD_CLAN',
   FETCH_CURRENT_USER: 'FETCH_CURRENT_USER',
-  FETCH_USER_FORUMS: 'FETCH_USER_FORUMS'
+  FETCH_USER_FORUMS: 'FETCH_USER_FORUMS',
+  FETCH_CLAN_FORUMS: 'FETCH_CLAN_FORUMS'
 };
 
 //fetchAllClans is an action cretor
@@ -16,11 +17,9 @@ export const fetchAllClans = () => {
   return (dispatch) => {
     getClans
       .then(clans => {
-        // console.log('should be all of the clans: ', clans);
-        
         dispatch({
           type: types.FETCH_ALL_CLANS,
-          payload: clans
+          payload: clans.data.results
         });
       })
       .catch(err => {
@@ -36,18 +35,11 @@ export const addClan = () => {
     payload: [{key: 1, type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'}]
   };
 };
-// axios.post('/', {type: 'FPS', tag: ['shooter', 'Call of Duty'], avatar: 'avatarURLimg', description: 'this game is fun, play it.'})
-//   .then(res => {
-//     fetchAllClans();
-//   })
-//   .catch(err => console.log('error in addClan: ', err));
- 
 export const fetchUserClans = (user) => {
   let getClans = axios.get(`/${user}/members`);
   return (dispatch) => {
     getClans
       .then(memberships => {
-        console.log('we got the memberships: ', memberships);
         dispatch({
           type: types.FETCH_USER_CLANS,
           payload: memberships
@@ -58,28 +50,9 @@ export const fetchUserClans = (user) => {
         throw err;
       });
   };
-
-  // Placeholder
-  // return {
-  //   type: types.FETCH_USER_CLANS,
-  //   payload: [{name: 'clan1'}, {name: 'clan2'}]
-  // }
 };
 
 export const fetchCurrentUser = () => {
-  // axios.get('/api/currentUser')
-  //   .then(user => {
-  //     console.log('behold, the current user: ', user);
-  //     dispatch({
-  //       type: FETCH_CURRENT_USER,
-  //       payload: user
-  //     });
-  //   })
-  //   .catch(err => {
-  //     console.log('error getting current user');
-  //     throw err;
-  //   });
-
   // Placeholder - returns hardcoded object
   return {
     type: types.FETCH_CURRENT_USER,
@@ -92,5 +65,25 @@ export const fetchUserForums = (user) => {
   return {
     type: types.FETCH_USER_FORUMS,
     payload: [{name: 'forum1'}, {name: 'forum2'}]
+  };
+};
+
+export const fetchClanForums = (clanId) => {
+  //below, the template string will append the clanId query to the end of the 
+  //request URL, otherwise, just render to an empty string, not changing the 
+  //request query to just get all clans
+  const getClanForums = axios.get(`/api/forums${clanId ? `?id=${clanId}` : ''}`);
+  return (dispatch) => {
+    getClanForums
+      .then(forums => {
+        dispatch({
+          type: types.FETCH_CLAN_FORUMS,
+          payload: forums.data.results
+        });
+      })
+      .catch(err => {
+        console.log('error getting all forums');
+        throw err;
+      });
   };
 };

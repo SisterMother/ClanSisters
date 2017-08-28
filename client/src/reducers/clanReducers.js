@@ -12,6 +12,8 @@ export const rootReducer = (state, action) => {
     newState = {...state, currentUser: action.payload};
   } else if (action.type === types.FETCH_USER_FORUMS) {
     newState = {...state, forums: action.payload};
+  } else if (action.type === types.FETCH_CLAN_FORUMS) {
+    newState = {...state, forums: action.payload};
   }
   return newState || state;
 };
