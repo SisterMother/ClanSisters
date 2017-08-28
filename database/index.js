@@ -29,5 +29,6 @@ module.exports = {
   Forum,
   Post,
   Member,
-  PostVote
+  PostVote,
+  ClanFeed
 };

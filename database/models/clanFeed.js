@@ -7,7 +7,7 @@ const {Sequelize, db} = require('../connection');
  */
 const ClanFeedModel = db.define('clanFeed', {
   text: {
-    type: Sequelize.BOOLEAN,
+    type: Sequelize.STRING(128),
   }
 });
 
