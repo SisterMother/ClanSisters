@@ -27,13 +27,13 @@ describe('ClanFeed Schema', () => {
               clanId: newClan.id,
               text: feedText
             })
-            .then((feedMessage) => {
-              expect(feedMessage.id).to.exist;
-              expect(feedMessage.userId).to.equal(newUser.id);
-              expect(feedMessage.clanId).to.equal(newClan.id);
-              expect(feedMessage.text).to.equal(feedText);
-              done();
-            });
+              .then((feedMessage) => {
+                expect(feedMessage.id).to.exist;
+                expect(feedMessage.userId).to.equal(newUser.id);
+                expect(feedMessage.clanId).to.equal(newClan.id);
+                expect(feedMessage.text).to.equal(feedText);
+                done();
+              });
           });
       });
   });
@@ -50,20 +50,20 @@ describe('ClanFeed Schema', () => {
               clanId: newClan.id,
               text: feedText
             })
-            .then(() => {
-              return ClanFeed.getMessages({clanId: newClan.id})
-                .then((clanFeed) => {
-                  expect(clanFeed).to.exist;
-                  expect(clanFeed).to.be.a('array');
-                  expect(clanFeed.length).to.equal(1);
-                  let feedMessage = clanFeed[0];
-                  expect(feedMessage.id).to.exist;
-                  expect(feedMessage.userId).to.equal(newUser.id);
-                  expect(feedMessage.clanId).to.equal(newClan.id);
-                  expect(feedMessage.text).to.equal(feedText);
-                  done();
-                });
-            });
+              .then(() => {
+                return ClanFeed.getMessages({clanId: newClan.id})
+                  .then((clanFeed) => {
+                    expect(clanFeed).to.exist;
+                    expect(clanFeed).to.be.a('array');
+                    expect(clanFeed.length).to.equal(1);
+                    let feedMessage = clanFeed[0];
+                    expect(feedMessage.id).to.exist;
+                    expect(feedMessage.userId).to.equal(newUser.id);
+                    expect(feedMessage.clanId).to.equal(newClan.id);
+                    expect(feedMessage.text).to.equal(feedText);
+                    done();
+                  });
+              });
           });
       });
   });
